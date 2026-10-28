@@ -19,7 +19,7 @@ export function randomHex(bytes = 16) {
 }
 
 /**
- * timingSafeEqual que não vaza timing e lida com buffers de tamanhos diferentes.
+ * timingSafeEqual that does not leak timing and handles buffers of different lengths.
  */
 export function timingSafeEqual(a?: string | null, b?: string | null): boolean {
 	if (!a || !b) return false;
@@ -28,7 +28,7 @@ export function timingSafeEqual(a?: string | null, b?: string | null): boolean {
 	const bBuf = Buffer.from(b, "utf8");
 
 	if (aBuf.length !== bBuf.length) {
-		// Normaliza o custo da comparação para evitar early-return visível em timing
+		// Normalise the comparison cost to avoid an early return visible in timing
 		const ah = createHash("sha256").update(aBuf).digest();
 		const bh = createHash("sha256").update(bBuf).digest();
 		nodeTimingSafeEqual(ah, bh);

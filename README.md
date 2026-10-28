@@ -1,64 +1,64 @@
 # RBM Dashboard Sandbox
 
-Projeto Next.js mínimo que reproduz a configuração do Global Malaria Dashboard (RBM Partnership to End Malaria / UNOPS) para que uma equipe externa desenvolva **um módulo** que depois será copiado para o projeto principal.
+Minimal Next.js project that reproduces the setup of the Global Malaria Dashboard (RBM Partnership to End Malaria / UNOPS) so that an external team can develop **one module** that will later be copied into the main project.
 
-Guia completo de regras e estrutura: [Diretrizes de integração — Dashboard externo](LINK_DA_DOC).
+Full guide of rules and structure: [Integration guidelines — External dashboard](LINK_TO_DOC).
 
-## Requisitos
+## Requirements
 
-- Node.js 20 (`nvm use` lê o `.nvmrc`)
-- npm (o `package-lock.json` é commitado; o CI usa `npm ci`)
+- Node.js 20 (`nvm use` reads the `.nvmrc`)
+- npm (the `package-lock.json` is committed; CI uses `npm ci`)
 
-## Rodar
+## Running
 
 ```bash
 npm ci
 cp "src/app/[locale]/unitaid/.env.example" .env.local
 npm run dev
-# http://localhost:3000/en/unitaid  (também /fr/unitaid e /pt/unitaid)
+# http://localhost:3000/en/unitaid  (also /fr/unitaid and /pt/unitaid)
 ```
 
-## Onde codar
+## Where to code
 
-Só estas três pastas são da equipe externa; tudo o mais é o "hospedeiro" e é protegido:
+Only these three folders belong to the external team; everything else is the "host" and is protected:
 
 ```
-src/app/[locale]/unitaid/   # página, componentes, hooks, services, lib (server-only), types, i18n, docs
-src/app/api/unitaid/        # rotas de API: data (GET proxy) e notifications (POST)
-public/unitaid/             # assets estáticos do módulo
+src/app/[locale]/unitaid/   # page, components, hooks, services, lib (server-only), types, i18n, docs
+src/app/api/unitaid/        # API routes: data (GET proxy) and notifications (POST)
+public/unitaid/             # static assets of the module
 ```
 
-Leia `src/app/[locale]/unitaid/README.md` para a responsabilidade de cada subpasta.
+Read `src/app/[locale]/unitaid/README.md` for the responsibility of each subfolder.
 
-## O que não tocar
+## What not to touch
 
-Qualquer arquivo fora das três pastas acima (configurações, `src/config.ts`, `src/i18n.ts`, shell em `src/ui/shell`, `messages/*.json`, `package.json`, `scripts/`). O script de contrato guarda o hash de cada um desses arquivos em `scripts/protected-files.json` e falha se algum mudar.
+Any file outside the three folders above (configuration files, `src/config.ts`, `src/i18n.ts`, the shell in `src/ui/shell`, `messages/*.json`, `package.json`, `scripts/`). The contract script stores the hash of each of these files in `scripts/protected-files.json` and fails if any of them changes.
 
-Precisa de uma dependência nova ou de uma alteração no hospedeiro? Registre em `src/app/[locale]/unitaid/INTEGRATION.md` e combine com a equipe interna antes.
+Need a new dependency or a change in the host? Record it in `src/app/[locale]/unitaid/INTEGRATION.md` and agree with the internal team first.
 
-## Validação (local e CI)
+## Validation (local and CI)
 
 ```bash
 npm run lint             # ESLint (next/core-web-vitals)
-npm run format:check     # Biome (tabs, aspas duplas); `npm run format` corrige
-npm run check:contract   # regras de integração (pastas, i18n, imports, env, dependências)
-npm run build            # build de produção, sem rede
+npm run format:check     # Biome (tabs, double quotes); `npm run format` fixes
+npm run check:contract   # integration rules (folders, i18n, imports, env, dependencies)
+npm run build            # production build, no network
 ```
 
-O workflow `.github/workflows/ci.yml` roda os quatro comandos em todo push e pull request. Uma falha de contrato imprime o grupo (`[paths]`, `[protected]`, `[i18n]`, `[imports]`, `[env]`, `[deps]`) e o arquivo envolvido.
+The `.github/workflows/ci.yml` workflow runs the four commands on every push and pull request. A contract failure prints the group (`[paths]`, `[protected]`, `[i18n]`, `[imports]`, `[env]`, `[deps]`) and the file involved.
 
-## Entrega
+## Delivery
 
-1. Os quatro comandos acima verdes.
-2. `INTEGRATION.md`, `README.md` e `.env.example` do módulo preenchidos.
-3. Tag ou commit indicado à equipe interna, que copia as três pastas para o projeto principal.
+1. The four commands above are green.
+2. The module's `INTEGRATION.md`, `README.md` and `.env.example` are filled in.
+3. A tag or commit is communicated to the internal team, which copies the three folders into the main project.
 
-## Para o mantenedor (equipe interna)
+## For the maintainer (internal team)
 
-Depois de alterar qualquer arquivo do starter, regenere os manifestos:
+After changing any starter file, regenerate the manifests:
 
 ```bash
 node scripts/check-contract.mjs --snapshot
 ```
 
-Isso reescreve `scripts/protected-files.json` e `scripts/approved-dependencies.json`. O CI nunca usa `--snapshot`.
+This rewrites `scripts/protected-files.json` and `scripts/approved-dependencies.json`. CI never uses `--snapshot`.

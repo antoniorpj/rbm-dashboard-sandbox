@@ -1,12 +1,12 @@
 {
-	"generatedAt": "2026-10-27T18:12:27.707Z",
+	"generatedAt": "2026-10-28T01:32:16.121Z",
 	"files": {
 		".eslintrc.json": "e5c4c6c6977248e3449cafedc1d8b26f7647438b00cc4a044128bf2d7fc993f0",
 		".github/workflows/ci.yml": "ad126e5fb11c0100bb581ee26d484f57e625b2ad5a9efdee2b2a1f2da574a37a",
 		".gitignore": "04ec9a3d69fa40a60ba8ac6c62fac7d170f42d0865cd28d547a6fe7c1c8f8dc2",
 		".nvmrc": "5378796307535df3ec8d8b15a2e2dc5641419c3d3060cfe32238c0fa973f7aa3",
 		".vscode/settings.json": "ac26ccf3618522a8fc1497cedb4519f83331b8ba0ff7112c9ce59c9b567be375",
-		"README.md": "57813121df715608ad0cd5b784419c4d7116dbc848d875bc7cd4919ecf4c6163",
+		"README.md": "093894f94a257f9af7176bd9db8dc97d0924d2a2e0a8d9088c380dc9d7c72e31",
 		"biome.json": "8093a14f83fd1761367857d3f7e9b6a822ec976314d6de4ef9bc05a89bc239ee",
 		"messages/en.json": "57d89fd51734b3eb38870cad41e2b22521ca8e4600dd6b9c2a31ec31e3d947d8",
 		"messages/fr.json": "48741e8eb05ad35dc89d75f7bad299543f01ef96aa602f3c69566ec5ce47474e",
@@ -47,7 +47,7 @@
 		"src/ui/shell/Sidebar.tsx": "981aa37b2c57d3231c5dfe97f41120fe0e2dd01a5e5c80ad20a13f1a4d84fa18",
 		"src/ui/shell/sidebar-items.tsx": "05fdaa3563f5dbdfb7895921187c0353ec3824f8771f1038aa6b50f5d55b377f",
 		"src/utils/common-functions.ts": "9edacfb6e9661f29e2365702f1ea1d7a870fce42dae4f2cfda29b5790c52965a",
-		"src/utils/server/crypto.ts": "79f80bd8e8bcc9507b6771d910fd723fc0dbea7c23904e8ad398e1252849c16c",
+		"src/utils/server/crypto.ts": "548e2e3fa024cc7f991a7f8ff3a6f669cb7795ecd2c4db87563283e1a41d7e34",
 		"tailwind.config.ts": "55837a17e81518e10299d8c90e69c73e7d65251a6eab02187282e0821bc2fb37",
 		"tsconfig.json": "2703869b1de7e5d4358f8fa39e7a44cb501fb2077879718e255d201fb0babefc"
 	}
